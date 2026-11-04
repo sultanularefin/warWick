@@ -22,12 +22,13 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useAppDispatch } from '../app/hooks';
 import type { RootStackParamList } from '../navigation/RootNavigator';
 import { useSignupMutation } from '../app/features/auth/authApi.ts';
-import { ScreenContainer } from 'react-native-screens';
+// import { ScreenContainer } from 'react-native-screens';
 import { setCredentials } from '../app/features/auth/authSlice.ts';
 import Feather from '@react-native-vector-icons/feather';
 import { TextField } from '../app/components/TextField.tsx';
 import { PasswordStrength } from '../app/components/PasswordStrength.tsx';
 import { GradientButton } from '../app/components/GradientButton.tsx';
+import { ScreenContainer } from '../app/components/ScreenContainer.tsx';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Signup'>;
 

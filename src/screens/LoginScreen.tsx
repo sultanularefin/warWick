@@ -22,11 +22,12 @@ import { useAppDispatch } from '../app/hooks';
 import type { RootStackParamList } from '../navigation/RootNavigator';
 import { useLoginMutation } from '../app/features/auth/authApi.ts';
 import { setCredentials } from '../app/features/auth/authSlice.ts';
-import { ScreenContainer } from 'react-native-screens';
+// import { ScreenContainer } from 'react-native-screens';
 import Feather from '@react-native-vector-icons/feather';
 import { TextField } from '../app/components/TextField.tsx';
 import { GradientButton } from '../app/components/GradientButton.tsx';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { ScreenContainer } from '../app/components/ScreenContainer.tsx';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
 

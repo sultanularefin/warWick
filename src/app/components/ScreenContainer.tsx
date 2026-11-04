@@ -6,7 +6,9 @@ import LinearGradient from 'react-native-linear-gradient';
 export const ScreenContainer = ({ children }: { children: React.ReactNode }) => (
   <LinearGradient
     //@ts-ignore
-    colors={['#0F0C29', '#302B63', '#24243E']}
+    // colors={['#0F0C29', '#302B63', '#24243E']}
+    // colors={['#60A5FA', '#FFFBEB', '#ECFDF5']}
+    colors={['#FFFBEB','#60A5FA', '#ECFDF5']}
     style={styles.root}
   >
     <SafeAreaView style={styles.root} edges={['top', 'bottom']}>

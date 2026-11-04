@@ -3,7 +3,11 @@
 
 import React, { useEffect } from 'react';
 import { ActivityIndicator, View } from 'react-native';
-import { NavigationContainer, DarkTheme } from '@react-navigation/native';
+import {
+  NavigationContainer,
+  // DarkTheme,
+  DefaultTheme,
+} from '@react-navigation/native';
 import { Provider } from 'react-redux';
 import { useAppDispatch, useAppSelector } from './app/hooks.ts';
 import { hydrateAuth, store } from './app/store.ts';
@@ -40,7 +44,10 @@ function Shell() {
   }
 
   return (
-    <NavigationContainer theme={DarkTheme}>
+    <NavigationContainer
+      // theme={DarkTheme}
+      theme={DefaultTheme}
+    >
       <RootNavigator />
     </NavigationContainer>
   );
@@ -50,11 +57,11 @@ export default function App() {
 
   console.log("at APP for ");
   return (
-    /*<Provider store={store}>
+    <Provider store={store}>
       <Shell />
-    </Provider>*/
+    </Provider>
 
-    <HomeScreen/>
+    // <HomeScreen/>
 
 
   );
