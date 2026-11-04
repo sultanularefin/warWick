@@ -196,7 +196,8 @@ const styles = StyleSheet.create({
   },
   brand: { color: '#fff', fontSize: 22, fontWeight: '800', letterSpacing: 0.5 },
   title: { color: '#fff', fontSize: 32, fontWeight: '800', marginBottom: 6 },
-  subtitle: { color: 'rgba(255,255,255,0.55)', fontSize: 15, marginBottom: 28 },
+  // subtitle: { color: 'rgba(255,255,255,0.55)', fontSize: 15, marginBottom: 28 },
+  subtitle: { color: 'rgba(0,0,0,0.55)', fontSize: 15, marginBottom: 28 },
   card: {
     backgroundColor: 'rgba(255,255,255,0.04)',
     borderWidth: 1,
@@ -217,6 +218,7 @@ const styles = StyleSheet.create({
   },
   errorTxt: { color: '#FCA5A5', fontSize: 13, flex: 1 },
   footer: { flexDirection: 'row', justifyContent: 'center', marginTop: 28 },
-  footerTxt: { color: 'rgba(255,255,255,0.55)', fontSize: 14 },
+  // footerTxt: { color: 'rgba(255,255,255,0.55)', fontSize: 14 },
+  footerTxt: { color: 'rgba(1,1,1,0.55)', fontSize: 14 },
   footerLink: { color: '#A78BFA', fontWeight: '700', fontSize: 14 },
 });

@@ -42,12 +42,14 @@ export const TextField: React.FC<Props> = ({
           //@ts-ignore
           name={icon}
           size={18}
-          color={focused ? '#A78BFA' : 'rgba(255,255,255,0.45)'}
+          // color={focused ? '#A78BFA' : 'rgba(255,255,255,0.45)'}
+          color={focused ? '#A78BFA' : 'rgba(1,1,1,0.45)'}
         />
         <TextInput
           {...rest}
           style={[styles.input, style]}
-          placeholderTextColor="rgba(255,255,255,0.3)"
+          // placeholderTextColor="rgba(255,255,255,0.3)"
+          placeholderTextColor="rgba(1,1,1,0.3)"
           secureTextEntry={isPassword && hidden}
           onFocus={e => {
             setFocused(true);
@@ -63,7 +65,8 @@ export const TextField: React.FC<Props> = ({
             <Feather
               name={hidden ? 'eye-off' : 'eye'}
               size={18}
-              color="rgba(255,255,255,0.45)"
+              // color="rgba(255,255,255,0.45)"
+              color="rgba(1,1,1,0.45)"
             />
           </TouchableOpacity>
         )}
@@ -76,7 +79,8 @@ export const TextField: React.FC<Props> = ({
 const styles = StyleSheet.create({
   wrap: { marginBottom: 16 },
   label: {
-    color: 'rgba(255,255,255,0.7)',
+    // color: 'rgba(255,255,255,0.7)',
+    color: 'rgba(1,1,1,0.7)',
     fontSize: 13,
     marginBottom: 8,
     fontWeight: '600',
@@ -86,7 +90,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 10,
-    backgroundColor: 'rgba(255,255,255,0.06)',
+    // backgroundColor: 'rgba(255,255,255,0.06)',
+    backgroundColor: 'rgba(100,100,100,0.06)',
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.1)',
     borderRadius: 14,
@@ -94,8 +99,10 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
   },
   fieldFocused: {
-    borderColor: '#A78BFA',
-    backgroundColor: 'rgba(167,139,250,0.08)',
+    // borderColor: '#A78BFA',
+    borderColor: 'lemonchiffon',
+    // backgroundColor: 'rgba(167,139,250,0.08)',
+    backgroundColor: 'rgba(5,1,1,0.08)',
   },
   fieldError: { borderColor: '#F87171' },
   input: { flex: 1, color: '#fff', fontSize: 15, padding: 0 },
