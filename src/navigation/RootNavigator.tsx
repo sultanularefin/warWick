@@ -15,6 +15,8 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const RootNavigator = () => {
   const token = useAppSelector(s => s.auth.token);
+
+  console.log('token: at __ RootNavigator__ : : ', token);
   return (
     <Stack.Navigator
       screenOptions={{

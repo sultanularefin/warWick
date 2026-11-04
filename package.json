@@ -8,12 +8,15 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
+    "clean": "cd android && ./gradlew clean",
     "check_pk": "npm outdated",
+    "del": "cd android && rm -rf build && rm -rf .gradle && cd app && rm -rf build",
     "st": "react-native start --reset-cache",
     "clean5": "react-native-clean-project",
     "podi": "cd ios && RCT_NEW_ARCH_ENABLED=1 bundle exec pod install",
     "podu": "cd ios && pod update",
     "podc": "cd ios && rm -rf Podfile.lock && rm -rf build && rm -rf Pods && pod cache clean --all && pod deintegrate",
+    "clean_cxx": "rm -rf android/.cxx android/app/.cxx node_modules/react-native-nitro-modules/android/.cxx",
     "pods": "cd ios && bundle install"
   },
   "dependencies": {

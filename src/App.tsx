@@ -1,48 +1,4 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
 
-/*import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
-
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  return (
-    <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
-    </SafeAreaProvider>
-  );
-}
-
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
-
-  return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
-
-export default App;*/
 
 
 import React, { useEffect } from 'react';
@@ -52,6 +8,7 @@ import { Provider } from 'react-redux';
 import { useAppDispatch, useAppSelector } from './app/hooks.ts';
 import { hydrateAuth, store } from './app/store.ts';
 import { RootNavigator } from './navigation/RootNavigator.tsx';
+import { HomeScreen } from './screens/HomeScreen.tsx';
 
 // import { store, hydrateAuth } from './src/app/store';
 // import { useAppDispatch, useAppSelector } from './src/app/hooks';
@@ -60,6 +17,8 @@ import { RootNavigator } from './navigation/RootNavigator.tsx';
 function Shell() {
   const dispatch = useAppDispatch();
   const hydrated = useAppSelector(s => s.auth.hydrated);
+
+  console.log('hydrated at Shell: ', hydrated);
 
   useEffect(() => {
     dispatch(hydrateAuth());
@@ -88,9 +47,15 @@ function Shell() {
 }
 
 export default function App() {
+
+  console.log("at APP for ");
   return (
-    <Provider store={store}>
+    /*<Provider store={store}>
       <Shell />
-    </Provider>
+    </Provider>*/
+
+    <HomeScreen/>
+
+
   );
 }
