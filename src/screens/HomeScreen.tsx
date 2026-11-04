@@ -7,15 +7,21 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
+// import Icon from 'react-native-vector-icons/Feather';
 import LinearGradient from 'react-native-linear-gradient';
 
-import { ScreenContainer } from '../components/ScreenContainer';
-import { GradientButton } from '../components/GradientButton';
-import { useLogoutMutation } from '../features/auth/authApi';
-import { clearCredentials } from '../features/auth/authSlice';
-import { apiSlice } from '../features/api/apiSlice';
+// import { ScreenContainer } from '../components/ScreenContainer';
+// import { GradientButton } from '../components/GradientButton';
+// import { useLogoutMutation } from '../features/auth/authApi';
+// import { clearCredentials } from '../features/auth/authSlice';
+// import { apiSlice } from '../features/api/apiSlice';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { clearCredentials } from '../app/features/auth/authSlice.ts';
+import { apiSlice } from '../app/features/api/apiSlice.ts';
+import { useLogoutMutation } from '../app/features/auth/authApi.ts';
+import { ScreenContainer } from 'react-native-screens';
+import { GradientButton } from '../app/components/GradientButton.tsx';
+import Feather from '@react-native-vector-icons/feather';
 
 export const HomeScreen = () => {
   const dispatch = useAppDispatch();
@@ -40,7 +46,11 @@ export const HomeScreen = () => {
     <ScreenContainer>
       <View style={styles.root}>
         <View style={styles.avatarWrap}>
-          <LinearGradient colors={['#7C3AED', '#EC4899']} style={styles.avatar}>
+          <LinearGradient
+            //@ts-ignore
+            colors={['#7C3AED', '#EC4899']}
+            style={styles.avatar}
+          >
             <Text style={styles.avatarTxt}>{initial}</Text>
           </LinearGradient>
           <Text style={styles.name}>{user?.name}</Text>
@@ -71,7 +81,7 @@ export const HomeScreen = () => {
         <Pressable style={styles.backdrop} onPress={() => setConfirm(false)}>
           <Pressable style={styles.sheet} onPress={e => e.stopPropagation()}>
             <View style={styles.sheetIcon}>
-              <Icon name="log-out" size={22} color="#F87171" />
+              <Feather name="log-out" size={22} color="#F87171" />
             </View>
             <Text style={styles.sheetTitle}>Log out?</Text>
             <Text style={styles.sheetBody}>
@@ -112,10 +122,13 @@ const Row = ({
 }) => (
   <TouchableOpacity style={[styles.row, last && { borderBottomWidth: 0 }]}>
     <View style={styles.rowIcon}>
-      <Icon name={icon} size={18} color="#A78BFA" />
+      <Feather
+        //@ts-ignore
+        name={icon}
+        size={18} color="#A78BFA" />
     </View>
     <Text style={styles.rowLabel}>{label}</Text>
-    <Icon name="chevron-right" size={18} color="rgba(255,255,255,0.3)" />
+    <Feather name="chevron-right" size={18} color="rgba(255,255,255,0.3)" />
   </TouchableOpacity>
 );
 

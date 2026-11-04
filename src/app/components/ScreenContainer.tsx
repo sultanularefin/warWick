@@ -3,12 +3,9 @@ import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import LinearGradient from 'react-native-linear-gradient';
 
-export const ScreenContainer = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => (
+export const ScreenContainer = ({ children }: { children: React.ReactNode }) => (
   <LinearGradient
+    //@ts-ignore
     colors={['#0F0C29', '#302B63', '#24243E']}
     style={styles.root}
   >

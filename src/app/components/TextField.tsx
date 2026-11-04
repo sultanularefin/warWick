@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import Feather from '@react-native-vector-icons/feather';
 // import Icon from 'react-native-vector-icons/Feather';
 
 interface Props extends TextInputProps {
@@ -37,7 +38,8 @@ export const TextField: React.FC<Props> = ({
           !!error && styles.fieldError,
         ]}
       >
-        <Icon
+        <Feather
+          //@ts-ignore
           name={icon}
           size={18}
           color={focused ? '#A78BFA' : 'rgba(255,255,255,0.45)'}
@@ -58,7 +60,7 @@ export const TextField: React.FC<Props> = ({
         />
         {isPassword && (
           <TouchableOpacity onPress={() => setHidden(h => !h)} hitSlop={12}>
-            <Icon
+            <Feather
               name={hidden ? 'eye-off' : 'eye'}
               size={18}
               color="rgba(255,255,255,0.45)"

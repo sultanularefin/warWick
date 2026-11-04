@@ -9,18 +9,25 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
+// import Icon from 'react-native-vector-icons/Feather';
 import LinearGradient from 'react-native-linear-gradient';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-import { ScreenContainer } from '../components/ScreenContainer';
-import { TextField } from '../components/TextField';
-import { GradientButton } from '../components/GradientButton';
-import { PasswordStrength } from '../components/PasswordStrength';
-import { useSignupMutation } from '../features/auth/authApi';
-import { setCredentials } from '../features/auth/authSlice';
+// import { ScreenContainer } from '../components/ScreenContainer';
+// import { TextField } from '../components/TextField';
+// import { GradientButton } from '../components/GradientButton';
+// import { PasswordStrength } from '../components/PasswordStrength';
+// import { useSignupMutation } from '../features/auth/authApi';
+// import { setCredentials } from '../features/auth/authSlice';
 import { useAppDispatch } from '../app/hooks';
 import type { RootStackParamList } from '../navigation/RootNavigator';
+import { useSignupMutation } from '../app/features/auth/authApi.ts';
+import { ScreenContainer } from 'react-native-screens';
+import { setCredentials } from '../app/features/auth/authSlice.ts';
+import Feather from '@react-native-vector-icons/feather';
+import { TextField } from '../app/components/TextField.tsx';
+import { PasswordStrength } from '../app/components/PasswordStrength.tsx';
+import { GradientButton } from '../app/components/GradientButton.tsx';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Signup'>;
 
@@ -90,10 +97,11 @@ export const SignupScreen = ({ navigation }: Props) => {
           >
             <View style={styles.logoRow}>
               <LinearGradient
+                //@ts-ignore
                 colors={['#7C3AED', '#EC4899']}
                 style={styles.logo}
               >
-                <Icon name="zap" size={30} color="#fff" />
+                <Feather name="zap" size={30} color="#fff" />
               </LinearGradient>
               <Text style={styles.brand}>Nimbus</Text>
             </View>
@@ -145,7 +153,7 @@ export const SignupScreen = ({ navigation }: Props) => {
 
               {errors.general && (
                 <View style={styles.errorBox}>
-                  <Icon name="alert-circle" size={16} color="#FCA5A5" />
+                  <Feather name="alert-circle" size={16} color="#FCA5A5" />
                   <Text style={styles.errorTxt}>{errors.general}</Text>
                 </View>
               )}

@@ -9,17 +9,24 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
+// import Icon from 'react-native-vector-icons/Feather';
 import LinearGradient from 'react-native-linear-gradient';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+// import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-import { ScreenContainer } from '../components/ScreenContainer';
-import { TextField } from '../components/TextField';
-import { GradientButton } from '../components/GradientButton';
-import { useLoginMutation } from '../features/auth/authApi';
-import { setCredentials } from '../features/auth/authSlice';
+// import { ScreenContainer } from '../components/ScreenContainer';
+// import { TextField } from '../components/TextField';
+// import { GradientButton } from '../components/GradientButton';
+// import { useLoginMutation } from '../features/auth/authApi';
+// import { setCredentials } from '../features/auth/authSlice';
 import { useAppDispatch } from '../app/hooks';
 import type { RootStackParamList } from '../navigation/RootNavigator';
+import { useLoginMutation } from '../app/features/auth/authApi.ts';
+import { setCredentials } from '../app/features/auth/authSlice.ts';
+import { ScreenContainer } from 'react-native-screens';
+import Feather from '@react-native-vector-icons/feather';
+import { TextField } from '../app/components/TextField.tsx';
+import { GradientButton } from '../app/components/GradientButton.tsx';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
@@ -81,10 +88,11 @@ export const LoginScreen = ({ navigation }: Props) => {
           >
             <View style={styles.logoRow}>
               <LinearGradient
+                //@ts-ignore
                 colors={['#7C3AED', '#EC4899']}
                 style={styles.logo}
               >
-                <Icon name="zap" size={30} color="#fff" />
+                <Feather name="zap" size={30} color="#fff" />
               </LinearGradient>
               <Text style={styles.brand}>Nimbus</Text>
             </View>
@@ -127,7 +135,7 @@ export const LoginScreen = ({ navigation }: Props) => {
 
               {errors.general && (
                 <View style={styles.errorBox}>
-                  <Icon name="alert-circle" size={16} color="#FCA5A5" />
+                  <Feather name="alert-circle" size={16} color="#FCA5A5" />
                   <Text style={styles.errorTxt}>{errors.general}</Text>
                 </View>
               )}
@@ -146,11 +154,11 @@ export const LoginScreen = ({ navigation }: Props) => {
 
               <View style={styles.socialRow}>
                 <TouchableOpacity style={styles.social}>
-                  <Icon name="globe" size={18} color="#fff" />
+                  <Feather name="globe" size={18} color="#fff" />
                   <Text style={styles.socialTxt}>Google</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.social}>
-                  <Icon name="github" size={18} color="#fff" />
+                  <Feather name="github" size={18} color="#fff" />
                   <Text style={styles.socialTxt}>GitHub</Text>
                 </TouchableOpacity>
               </View>

@@ -38,6 +38,7 @@ export const GradientButton: React.FC<Props> = ({
       style={[styles.wrap, style, (loading || disabled) && { opacity: 0.7 }]}
     >
       <LinearGradient
+        //@ts-ignore
         colors={colors}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
