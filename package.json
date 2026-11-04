@@ -7,7 +7,12 @@
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "st": "react-native start --reset-cache",
+    "clean5": "react-native-clean-project",
+    "podi": "cd ios && RCT_NEW_ARCH_ENABLED=1 bundle exec pod install",
+    "podu": "cd ios && pod update",
+    "podc": "cd ios && rm -rf Podfile.lock && rm -rf build && rm -rf Pods && pod cache clean --all && pod deintegrate"
   },
   "dependencies": {
     "react": "19.3.0",
