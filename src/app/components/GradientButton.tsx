@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   ActivityIndicator,
+  Pressable,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -28,29 +29,46 @@ export const GradientButton: React.FC<Props> = ({
   const colors =
     variant === 'danger'
       ? (['#EF4444', '#DC2626'] as const)
-      : (['#7C3AED', '#A855F7', '#EC4899'] as const);
+      : // : (['#7C3AED', '#A855F7', '#EC4899'] as const);
+        (['#ECFAAA', '#EFAAA4', '#ECFAAA'] as const);
+  // colors={['#FFFBEB','#60A5FA', '#ECFDF5']}
 
   return (
-    <TouchableOpacity
+    <Pressable
       onPress={onPress}
       disabled={loading || disabled}
-      activeOpacity={0.85}
-      style={[styles.wrap, style, (loading || disabled) && { opacity: 0.7 }]}
+      // activeOpacity={0.85}
+
+      style={({ pressed }) => [
+        // style={[
+        styles.wrap,
+        style,
+        (loading || disabled) && { opacity: 0.7 },
+        {
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: pressed ? 'transparent' : '#E2E8F0',
+          // backgroundColor: '#E2E8F0',
+          // ...Password_Change_Styles.pressable_comp_image__password_wrapper,
+        },
+      ]}
     >
-      <LinearGradient
+      {/*  <LinearGradient
         //@ts-ignore
         colors={colors}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={styles.btn}
-      >
-        {loading ? (
-          <ActivityIndicator color="#fff" />
-        ) : (
-          <Text style={styles.txt}>{title}</Text>
-        )}
-      </LinearGradient>
-    </TouchableOpacity>
+      >*/}
+      {loading ? (
+        <ActivityIndicator color="#fff" />
+      ) : (
+        <Text style={styles.txt}>{title}</Text>
+      )}
+      {/*</LinearGradient>*/}
+    </Pressable>
   );
 };
 
@@ -69,5 +87,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  txt: { color: '#fff', fontSize: 16, fontWeight: '700', letterSpacing: 0.4 },
+  txt: { color: '#111', fontSize: 16, fontWeight: '700', letterSpacing: 0.4 },
 });

@@ -4,6 +4,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
+  // StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -28,6 +29,7 @@ import { TextField } from '../app/components/TextField.tsx';
 import { GradientButton } from '../app/components/GradientButton.tsx';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ScreenContainer } from '../app/components/ScreenContainer.tsx';
+// import { SafeAreaView } from 'react-native-safe-area-context';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
@@ -74,6 +76,14 @@ export const LoginScreen = ({ navigation }: Props) => {
     }
   };
 
+  /*<SafeAreaView>*/
+  {
+    /*<StatusBar
+        barStyle="light-content"
+        // backgroundColor="transparent"
+        // translucent
+      />*/
+  }
   return (
     <ScreenContainer>
       <KeyboardAvoidingView
@@ -145,6 +155,9 @@ export const LoginScreen = ({ navigation }: Props) => {
                 title="Sign In"
                 onPress={submit}
                 loading={isLoading}
+                style={{
+                  height: 50,
+                }}
               />
 
               <View style={styles.divider}>
@@ -175,6 +188,7 @@ export const LoginScreen = ({ navigation }: Props) => {
         </ScrollView>
       </KeyboardAvoidingView>
     </ScreenContainer>
+    /* </SafeAreaView>*/
   );
 };
 
@@ -204,7 +218,8 @@ const styles = StyleSheet.create({
     padding: 22,
   },
   forgot: { alignSelf: 'flex-end', marginBottom: 20 },
-  forgotTxt: { color: '#A78BFA', fontSize: 13, fontWeight: '600' },
+  // forgotTxt: { color: '#A78BFA', fontSize: 13, fontWeight: '600' },
+  forgotTxt: { color: '#FFFCCA', fontSize: 13, fontWeight: '600' },
   errorBox: {
     flexDirection: 'row',
     alignItems: 'center',

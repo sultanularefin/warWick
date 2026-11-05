@@ -5,7 +5,8 @@ import { RootState } from '../../store.ts';
 export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://api.example.com',
+    // baseUrl: 'https://api.example.com',
+    baseUrl: 'http://192.168.0.102:5000/api',
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).auth.token;
       if (token) headers.set('authorization', `Bearer ${token}`);

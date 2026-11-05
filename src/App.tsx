@@ -2,7 +2,7 @@
 
 
 import React, { useEffect } from 'react';
-import { ActivityIndicator, View } from 'react-native';
+import { ActivityIndicator, StatusBar, View } from 'react-native';
 import {
   NavigationContainer,
   // DarkTheme,
@@ -44,6 +44,7 @@ function Shell() {
   }
 
   return (
+
     <NavigationContainer
       // theme={DarkTheme}
       theme={DefaultTheme}
@@ -58,11 +59,14 @@ export default function App() {
   console.log("at APP for ");
   return (
     <Provider store={store}>
+      <StatusBar
+        barStyle="light-content"
+        // backgroundColor="transparent"
+        // translucent
+      />
       <Shell />
     </Provider>
 
     // <HomeScreen/>
-
-
   );
 }

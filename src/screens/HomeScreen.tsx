@@ -19,9 +19,10 @@ import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { clearCredentials } from '../app/features/auth/authSlice.ts';
 import { apiSlice } from '../app/features/api/apiSlice.ts';
 import { useLogoutMutation } from '../app/features/auth/authApi.ts';
-import { ScreenContainer } from 'react-native-screens';
+// import { ScreenContainer } from 'react-native-screens';
 import { GradientButton } from '../app/components/GradientButton.tsx';
 import Feather from '@react-native-vector-icons/feather';
+import { ScreenContainer } from '../app/components/ScreenContainer.tsx';
 
 export const HomeScreen = () => {
   const dispatch = useAppDispatch();
@@ -40,7 +41,7 @@ export const HomeScreen = () => {
     setConfirm(false);
   };
 
-  const initial = user?.name?.[0]?.toUpperCase() ?? '?';
+  const initial = user?.username?.[0]?.toUpperCase() ?? '?';
 
   return (
     <ScreenContainer>
@@ -68,7 +69,10 @@ export const HomeScreen = () => {
           title="Log Out"
           variant="danger"
           onPress={() => setConfirm(true)}
-          style={{ marginTop: 24 }}
+          style={{
+            marginTop: 24,
+            height:50
+        }}
         />
       </View>
 

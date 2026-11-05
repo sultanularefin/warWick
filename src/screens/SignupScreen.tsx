@@ -163,6 +163,9 @@ export const SignupScreen = ({ navigation }: Props) => {
                 title="Create Account"
                 onPress={submit}
                 loading={isLoading}
+                style={{
+                  height: 50,
+                }}
               />
             </View>
 
