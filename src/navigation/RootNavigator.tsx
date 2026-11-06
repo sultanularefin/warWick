@@ -4,8 +4,9 @@ import { useAppSelector } from '../app/hooks';
 import { LoginScreen } from '../screens/LoginScreen';
 // import { SignupScreen } from '../screens/SignupScreen';
 import { HomeScreen } from '../screens/HomeScreen';
-import RegistrationScreen from '../screens/RegistrationScreen.tsx';
+// import RegistrationScreen from '../screens/RegistrationScreen.tsx';
 import RegScreen from '../screens/RegScreen.tsx';
+import { SignupScreen } from '../screens/SignupScreen.tsx';
 
 export type RootStackParamList = {
   Login: undefined;
@@ -34,11 +35,11 @@ export const RootNavigator = () => {
       ) : (
         <>
           <Stack.Screen name="Login" component={LoginScreen} />
-          {/*<Stack.Screen name="Signup" component={SignupScreen} />*/}
-          <Stack.Screen
+          <Stack.Screen name="Signup" component={SignupScreen} />
+          {/*<Stack.Screen
             name="RegistrationScreen"
             component={RegistrationScreen}
-          />
+          />*/}
 
           <Stack.Screen name="RegScreen" component={RegScreen} />
         </>

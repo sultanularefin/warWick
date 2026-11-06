@@ -182,9 +182,9 @@ export const LoginScreen = ({ navigation }: Props) => {
             <View style={styles.footer}>
               <Text style={styles.footerTxt}>Don't have an account? </Text>
               <TouchableOpacity
-                // onPress={() => navigation.navigate('Signup')}
+                onPress={() => navigation.navigate('Signup')}
                 // onPress={() => navigation.navigate('RegistrationScreen')}
-                onPress={() => navigation.navigate('RegScreen')}
+                // onPress={() => navigation.navigate('RegScreen')}
               >
                 <Text style={styles.footerLink}>Sign up</Text>
               </TouchableOpacity>

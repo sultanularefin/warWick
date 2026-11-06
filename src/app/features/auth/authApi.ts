@@ -1,7 +1,7 @@
 import { apiSlice } from '../api/apiSlice';
 import {
   AuthResponseLogin,
-  AuthResponseRegister,
+  AuthResponseRegister, RegistrationPayloadData,
 } from '../../../types/auth_Types.ts';
 
 
@@ -10,12 +10,20 @@ import {
 
 export const authApi = apiSlice.injectEndpoints({
   endpoints: builder => ({
-    login: builder.mutation<AuthResponseLogin, { email: string; password: string }>({
+    login: builder.mutation<
+      AuthResponseLogin,
+      { email: string; password: string }
+    >({
       query: body => ({ url: '/auth/login', method: 'POST', body }),
     }),
     signup: builder.mutation<
       AuthResponseRegister,
-      { name: string; email: string; password: string }
+      RegistrationPayloadData
+      /*{
+        // name: string; email: string; password: string
+
+
+      }*/
     >({
       query: body => ({ url: '/reg/new', method: 'POST', body }),
     }),

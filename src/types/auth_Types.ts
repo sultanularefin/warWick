@@ -39,4 +39,26 @@ interface AuthResponseLogin {
   errors: string[]; //added on 27th june 2026
 }
 
-export type { User, AuthResponseLogin, AuthResponseRegister };
+
+ interface RegistrationPayloadData {
+   username: string;
+   email: string;
+   password: string;
+   phone: string;
+   country: string;
+ }
+
+ interface Country {
+   code: string;
+   name: string;
+   dialCode: string;
+   flag: string;
+ }
+
+export type {
+  User,
+  AuthResponseLogin,
+  AuthResponseRegister,
+  RegistrationPayloadData,
+  Country,
+};

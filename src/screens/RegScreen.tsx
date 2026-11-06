@@ -186,6 +186,7 @@ export default function RegScreen() {
       c.code.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
+
   const validateAll = useCallback((): boolean => {
     const next: Record<string, string> = {};
 
