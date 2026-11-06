@@ -2,7 +2,7 @@
 
 
 import React, { useEffect } from 'react';
-import { ActivityIndicator, StatusBar, View } from 'react-native';
+import { ActivityIndicator, Platform, StatusBar, View } from 'react-native';
 import {
   NavigationContainer,
   // DarkTheme,
@@ -12,11 +12,6 @@ import { Provider } from 'react-redux';
 import { useAppDispatch, useAppSelector } from './app/hooks.ts';
 import { hydrateAuth, store } from './app/store.ts';
 import { RootNavigator } from './navigation/RootNavigator.tsx';
-import { HomeScreen } from './screens/HomeScreen.tsx';
-
-// import { store, hydrateAuth } from './src/app/store';
-// import { useAppDispatch, useAppSelector } from './src/app/hooks';
-// import { RootNavigator } from './src/navigation/RootNavigator';
 
 function Shell() {
   const dispatch = useAppDispatch();
@@ -60,7 +55,9 @@ export default function App() {
   return (
     <Provider store={store}>
       <StatusBar
-        barStyle="light-content"
+        // barStyle="light-content"
+        barStyle={Platform.OS==='android'?"dark-content":"light-content"}
+
         // backgroundColor="transparent"
         // translucent
       />

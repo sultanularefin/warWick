@@ -1,5 +1,5 @@
 import { configureStore, createListenerMiddleware } from '@reduxjs/toolkit';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import { createMMKV } from 'react-native-mmkv';
 import authReducer, {
   clearCredentials,
@@ -7,12 +7,7 @@ import authReducer, {
   setHydrated,
 } from './features/auth/authSlice.ts';
 import { apiSlice } from './features/api/apiSlice.ts';
-/*import authReducer, {
-  setCredentials,
-  clearCredentials,
-  setHydrated,
-} from '../features/auth/authSlice';
-import { apiSlice } from '../features/api/apiSlice';*/
+
 
 const listener = createListenerMiddleware();
 const storage = createMMKV();

@@ -29,6 +29,7 @@ import { TextField } from '../app/components/TextField.tsx';
 import { GradientButton } from '../app/components/GradientButton.tsx';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ScreenContainer } from '../app/components/ScreenContainer.tsx';
+// import RegScreen from './RegScreen.tsx';
 // import { SafeAreaView } from 'react-native-safe-area-context';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
@@ -180,7 +181,11 @@ export const LoginScreen = ({ navigation }: Props) => {
 
             <View style={styles.footer}>
               <Text style={styles.footerTxt}>Don't have an account? </Text>
-              <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
+              <TouchableOpacity
+                // onPress={() => navigation.navigate('Signup')}
+                // onPress={() => navigation.navigate('RegistrationScreen')}
+                onPress={() => navigation.navigate('RegScreen')}
+              >
                 <Text style={styles.footerLink}>Sign up</Text>
               </TouchableOpacity>
             </View>

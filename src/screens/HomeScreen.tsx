@@ -7,19 +7,15 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-// import Icon from 'react-native-vector-icons/Feather';
+
 import LinearGradient from 'react-native-linear-gradient';
 
-// import { ScreenContainer } from '../components/ScreenContainer';
-// import { GradientButton } from '../components/GradientButton';
-// import { useLogoutMutation } from '../features/auth/authApi';
-// import { clearCredentials } from '../features/auth/authSlice';
-// import { apiSlice } from '../features/api/apiSlice';
+
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { clearCredentials } from '../app/features/auth/authSlice.ts';
 import { apiSlice } from '../app/features/api/apiSlice.ts';
 import { useLogoutMutation } from '../app/features/auth/authApi.ts';
-// import { ScreenContainer } from 'react-native-screens';
+
 import { GradientButton } from '../app/components/GradientButton.tsx';
 import Feather from '@react-native-vector-icons/feather';
 import { ScreenContainer } from '../app/components/ScreenContainer.tsx';
@@ -54,7 +50,7 @@ export const HomeScreen = () => {
           >
             <Text style={styles.avatarTxt}>{initial}</Text>
           </LinearGradient>
-          <Text style={styles.name}>{user?.name}</Text>
+          <Text style={styles.name}>{user?.username}</Text>
           <Text style={styles.email}>{user?.email}</Text>
         </View>
 
@@ -148,7 +144,8 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   avatarTxt: { color: '#fff', fontSize: 40, fontWeight: '800' },
-  name: { color: '#fff', fontSize: 24, fontWeight: '800', marginBottom: 4 },
+  // name: { color: '#fff', fontSize: 24, fontWeight: '800', marginBottom: 4 },
+  name: { color: '#111', fontSize: 24, fontWeight: '800', marginBottom: 4 },
   email: { color: 'rgba(255,255,255,0.5)', fontSize: 14 },
   card: {
     backgroundColor: 'rgba(255,255,255,0.04)',
