@@ -17,7 +17,8 @@
     "podu": "cd ios && pod update",
     "podc": "cd ios && rm -rf Podfile.lock && rm -rf build && rm -rf Pods && pod cache clean --all && pod deintegrate",
     "clean_cxx": "rm -rf android/.cxx android/app/.cxx node_modules/react-native-nitro-modules/android/.cxx",
-    "pods": "cd ios && bundle install"
+    "pods": "cd ios && bundle install",
+    "iosa": "react-native run-ios --device ABCD_iPhone"
   },
   "dependencies": {
     "@react-native-vector-icons/feather": "^14.0.0",
