@@ -41,39 +41,23 @@ export const LoginScreen = ({ navigation }: Props) => {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const fade = useRef(new Animated.Value(0)).current;
-  const slide = useRef(new Animated.Value(28)).current;
-
-  useEffect(() => {
-    Animated.parallel([
-      Animated.timing(fade, {
-        toValue: 1,
-        duration: 600,
-        useNativeDriver: true,
-      }),
-      Animated.timing(slide, {
-        toValue: 0,
-        duration: 600,
-        useNativeDriver: true,
-      }),
-    ]).start();
-  }, [fade, slide]);
-
   const submit = async () => {
     const e: Record<string, string> = {};
     if (!email.trim()) e.email = 'Email is required';
     else if (!/^\S+@\S+\.\S+$/.test(email)) e.email = 'Enter a valid email';
     if (!password) e.password = 'Password is required';
     setErrors(e);
-    if (Object.keys(e).length) return;
-
-    try {
-      const res = await login({ email: email.trim(), password }).unwrap();
-      dispatch(setCredentials(res));
-    } catch (err: any) {
-      setErrors({
-        general: err?.data?.message ?? 'Login failed. Please try again.',
-      });
+    if (Object.keys(e).length) {
+      return;
+    } else {
+      try {
+        const res = await login({ email: email.trim(), password }).unwrap();
+        dispatch(setCredentials(res));
+      } catch (err: any) {
+        setErrors({
+          general: err?.data?.message ?? 'Login failed. Please try again.',
+        });
+      }
     }
   };
 
@@ -85,10 +69,34 @@ export const LoginScreen = ({ navigation }: Props) => {
         // translucent
       />*/
   }
+
+  const fade = useRef(new Animated.Value(0)).current;
+  // const slide = useRef(new Animated.Value(28)).current;
+  const slide = useRef(new Animated.Value(58)).current;
+
+  // const fade = useRef(new Animated.Value(0)).current; // opacity: 0 → 1
+  // const slide = useRef(new Animated.Value(28)).current; // translateY: 28 → 0
+
+  useEffect(() => {
+    Animated.parallel([
+      Animated.timing(fade, {
+        toValue: 1,
+        duration: 600,
+        useNativeDriver: true,
+      }),
+      Animated.timing(slide, {
+        toValue: 0,
+        // duration: 1000,
+        duration: 600,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, [fade, slide]);
   return (
     <ScreenContainer>
       <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        // behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={{ flex: 1 }}
       >
         <ScrollView

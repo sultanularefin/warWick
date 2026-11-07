@@ -495,7 +495,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 8,
     // backgroundColor: 'rgba(239,68,68,0.12)',
-    backgroundColor: 'lemonchiffon',//'rgba(239,68,68,0.12)',
+    backgroundColor: 'lemonchiffon', //'rgba(239,68,68,0.12)',
     borderWidth: 1,
     borderColor: 'rgba(239,68,68,0.35)',
     padding: 12,
@@ -578,7 +578,8 @@ const styles = StyleSheet.create({
 
   terms: {
     fontSize: 12,
-    color: '#9CA3AF',
+    // color: 'steelblue', //'#9CA3AF',
+    color: 'yellow',
     textAlign: 'center',
     marginTop: 14,
   },
