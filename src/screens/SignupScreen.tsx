@@ -220,6 +220,11 @@ export const SignupScreen = ({ navigation }: Props) => {
       }).unwrap();
       if(res.success){
         Alert.alert('success',res.message);
+        setErrors({
+          general:
+            res.message,// err?.data?.message ??
+            // 'Sign up failed. Please try again.',
+        });
         dispatch(setCredentials(res));
       }else{
         Alert.alert(res.message);
@@ -489,14 +494,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
-    backgroundColor: 'rgba(239,68,68,0.12)',
+    // backgroundColor: 'rgba(239,68,68,0.12)',
+    backgroundColor: 'lemonchiffon',//'rgba(239,68,68,0.12)',
     borderWidth: 1,
     borderColor: 'rgba(239,68,68,0.35)',
     padding: 12,
     borderRadius: 12,
     marginBottom: 14,
   },
-  errorTxt: { color: '#FCA5A5', fontSize: 13, flex: 1 },
+  // errorTxt: { color: '#FCA5A5', fontSize: 13, flex: 1 },
+  errorTxt: { color: 'tomato', fontSize: 13, flex: 1 },
   footer: { flexDirection: 'row', justifyContent: 'center', marginTop: 28 },
   // footerTxt: { color: 'rgba(255,255,255,0.55)', fontSize: 14 },
   footerTxt: { color: 'rgba(1,1,1,0.55)', fontSize: 14 },
