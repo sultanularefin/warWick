@@ -35,6 +35,14 @@ import { PasswordStrength } from '../app/components/PasswordStrength.tsx';
 // import { GradientButton } from '../app/components/GradientButton.tsx';
 import { ScreenContainer } from '../app/components/ScreenContainer.tsx';
 import { Country } from '../types/auth_Types.ts';
+import { COUNTRIES } from '../constants/auth_Constants.ts';
+import {
+  validateCountry,
+  validateEmail,
+  validatePassword,
+  validatePhone,
+  validateUsername,
+} from '../utils/auth_Helpers.ts';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Signup'>;
 
@@ -99,72 +107,6 @@ const InputField: React.FC<InputFieldProps> = ({
 
 
 
-// ---- Countries list (no external package) ----
-const COUNTRIES: Country[] = [
-  { code: 'BD', name: 'Bangladesh', dialCode: '+880', flag: '🇧🇩' },
-  { code: 'US', name: 'United States', dialCode: '+1', flag: '🇺🇸' },
-  { code: 'GB', name: 'United Kingdom', dialCode: '+44', flag: '🇬🇧' },
-  { code: 'IN', name: 'India', dialCode: '+91', flag: '🇮🇳' },
-  { code: 'PK', name: 'Pakistan', dialCode: '+92', flag: '🇵🇰' },
-  { code: 'NP', name: 'Nepal', dialCode: '+977', flag: '🇳🇵' },
-  { code: 'LK', name: 'Sri Lanka', dialCode: '+94', flag: '🇱🇰' },
-  { code: 'CA', name: 'Canada', dialCode: '+1', flag: '🇨🇦' },
-  { code: 'AU', name: 'Australia', dialCode: '+61', flag: '🇦🇺' },
-  { code: 'DE', name: 'Germany', dialCode: '+49', flag: '🇩🇪' },
-  { code: 'FR', name: 'France', dialCode: '+33', flag: '🇫🇷' },
-  { code: 'JP', name: 'Japan', dialCode: '+81', flag: '🇯🇵' },
-  { code: 'CN', name: 'China', dialCode: '+86', flag: '🇨🇳' },
-  { code: 'AE', name: 'United Arab Emirates', dialCode: '+971', flag: '🇦🇪' },
-  { code: 'SA', name: 'Saudi Arabia', dialCode: '+966', flag: '🇸🇦' },
-  { code: 'SG', name: 'Singapore', dialCode: '+65', flag: '🇸🇬' },
-  { code: 'MY', name: 'Malaysia', dialCode: '+60', flag: '🇲🇾' },
-  { code: 'ZA', name: 'South Africa', dialCode: '+27', flag: '🇿🇦' },
-  { code: 'BR', name: 'Brazil', dialCode: '+55', flag: '🇧🇷' },
-  { code: 'IT', name: 'Italy', dialCode: '+39', flag: '🇮🇹' },
-];
-
-// ---- Validation helpers ----
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-const USERNAME_REGEX = /^[a-zA-Z0-9._-]{3,30}$/;
-const PASSWORD_REGEX =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^()_\-+=])[A-Za-z\d@$!%*?&#^()_\-+=]{8,}$/;
-
-const validateEmail = (email: string): boolean => EMAIL_REGEX.test(email.trim());
-const validateUsername = (username: string): boolean =>
-  USERNAME_REGEX.test(username.trim());
-const validatePassword = (password: string): boolean =>
-  PASSWORD_REGEX.test(password);
-
-const validatePhone = (phone: string, country: Country): boolean => {
-  const cleaned = phone.replace(/[\s\-()]/g, '');
-  if (!/^\+?\d{6,15}$/.test(cleaned)) {
-
-    console.log("1 for phone and country:",phone,country);
-    return false;
-  }
-
-  // Country-specific dial code check
-  if (country.dialCode) {
-    const digitsOnly = cleaned.replace(/\+/g, '');
-    const dialDigits = country.dialCode.replace(/\+/g, '');
-    if (!digitsOnly.startsWith(dialDigits)) return false;
-
-    const localPart = digitsOnly.slice(dialDigits.length);
-    // Simple length checks per country (extendable)
-    if (country.code === 'BD') return /^1\d{9}$/.test(localPart);
-    if (country.code === 'US' || country.code === 'CA')
-      return /^\d{10}$/.test(localPart);
-    if (country.code === 'GB') return /^\d{9,10}$/.test(localPart);
-    if (country.code === 'IN') return /^\d{10}$/.test(localPart);
-    return localPart.length >= 6 && localPart.length <= 13;
-  }
-  return true;
-};
-
-const validateCountry = (code: string): boolean =>
-  COUNTRIES.some((c) => c.code === code);
-
-
 export const SignupScreen = ({ navigation }: Props) => {
   const dispatch = useAppDispatch();
   const [signup, { isLoading }] = useSignupMutation();
@@ -226,16 +168,30 @@ export const SignupScreen = ({ navigation }: Props) => {
       next.password =
         'Min 8 chars, uppercase, lowercase, number & special char';
 
+
+    // const e: Record<string, string> = {};
+    // if (!name.trim()) e.Username = 'Name is required';
+
+    // if (!email.trim()) e.email = 'Email is required';
+    // else if (!/^\S+@\S+\.\S+$/.test(email)) e.email = 'Enter a valid email';
+
+    // if (password.length < 8) e.password = 'At least 8 characters';
+    if (confirm !== password) next.confirm = 'Passwords do not match';
+    // setErrors(e);
+    // if (Object.keys(e).length) return;
+
     if (!phone.trim()) next.phone = 'Phone number is required';
-    else if (!validatePhone(phone, selectedCountry))
+    else if (!validatePhone(`${selectedCountry.dialCode}${phone}`, selectedCountry)) {
       next.phone = `Invalid phone number for ${selectedCountry.name} (${selectedCountry.dialCode})`;
+    }
+
 
     if (!validateCountry(selectedCountry.code))
       next.country = 'Please select a valid country';
 
     setErrors(next);
     return Object.keys(next).length === 0;
-  }, [username, email, password, phone, selectedCountry]);
+  }, [username, email, password, confirm, phone, selectedCountry]);
 
 
 
@@ -244,17 +200,7 @@ export const SignupScreen = ({ navigation }: Props) => {
     if (!validateAll()) {
       return;
     }
-    const e: Record<string, string> = {};
-    // if (!name.trim()) e.Username = 'Name is required';
 
-
-    // if (!email.trim()) e.email = 'Email is required';
-    // else if (!/^\S+@\S+\.\S+$/.test(email)) e.email = 'Enter a valid email';
-
-    if (password.length < 8) e.password = 'At least 8 characters';
-    if (confirm !== password) e.confirm = 'Passwords do not match';
-    setErrors(e);
-    if (Object.keys(e).length) return;
 
     try {
       setSubmitting(true);
@@ -451,7 +397,8 @@ export const SignupScreen = ({ navigation }: Props) => {
                 label="Phone Number"
                 value={phone}
                 onChangeText={setPhone}
-                placeholder={`${selectedCountry.dialCode} 1XXXXXXXXX`}
+                // placeholder={`${selectedCountry.dialCode} 1XXXXXXXXX`}
+                placeholder={`1XXXXXXXXX`}
                 keyboardType="phone-pad"
                 error={errors.phone}
                 leftAddon={
@@ -480,13 +427,13 @@ export const SignupScreen = ({ navigation }: Props) => {
               <TouchableOpacity
                 style={[
                   styles.submitBtn,
-                  (submitting || isLoading ) && styles.submitBtnDisabled,
+                  (submitting || isLoading) && styles.submitBtnDisabled,
                 ]}
                 onPress={submit}
                 disabled={submitting || isLoading}
                 activeOpacity={0.85}
               >
-                {(submitting || isLoading) ? (
+                {submitting || isLoading ? (
                   <ActivityIndicator color="#fff" />
                 ) : (
                   <Text style={styles.submitText}>Create Account</Text>
